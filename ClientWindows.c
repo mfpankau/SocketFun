@@ -8,8 +8,8 @@ int main()
     WSADATA wsa;
     SOCKET sock;
     struct sockaddr_in server;
-    char* message;
-    char ip[16];
+    char message[128], server_reply[2000], ip[16];
+    int recv_size;
 
     //get ip of server
     printf("Input ip of server: ");
@@ -47,5 +47,24 @@ int main()
     }
 
     printf("connected");
+
+    //get message to send
+    puts("Input message: ");
+    gets(message);
+
+    //send message
+    if(send(sock, message, sizeof(message), 0) < 0)
+    {
+        printf("sending message failed");
+        return -1;
+    }
+
+    //print recieved message
+    if(recv_size = (recv(sock, server_reply, 2000, 0)) == SOCKET_ERROR)
+    {
+        printf("error recieving data\n");
+    }
+    server_reply[recv_size] = '\0';
+    puts(server_reply);
     return 0;
 }
