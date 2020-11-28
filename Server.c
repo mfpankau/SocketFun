@@ -12,7 +12,7 @@ int main()
     int opt = 1;
     int addrlen = sizeof(address);
     char buffer[1024] = {0};
-    char* text = "sup bro";
+    char text[1024];
 
     //get port input
     printf("Input port for server to be hosted on: ");
@@ -41,6 +41,7 @@ int main()
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
+    printf("socket should be up now pog\n");
     //listen for connections
     if(listen(server_fd, 3) < 0)
     {
@@ -52,15 +53,16 @@ int main()
         perror("accept"); 
         exit(EXIT_FAILURE); 
     } 
-    printf("socket should be up now pog\n");
     
     //output read data
-    valread = read( new_socket , buffer, 1024); 
+    valread = read( new_socket , buffer, 1023); 
     printf("%s\n",buffer ); 
     
     //send message
-    gets(text);
+    fgets(&text, 1023, stdin);
     send(new_socket , text , strlen(text) , 0 ); 
     printf("message sent\n"); 
+
+
     return 0;
 }

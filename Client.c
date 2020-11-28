@@ -9,7 +9,7 @@ int main()
 {
     int sock = 0, valread, port;
     struct sockaddr_in serv_addr;
-    char* message = "hi, is this working?";
+    char message[1024];
     char buffer[1024] = {0};
 
     char serverAddress[16];
@@ -42,12 +42,18 @@ int main()
         printf("connection failed.\n");
         return -1;
     }
+    printf("connected to server\n");
+    
+    //recieve
+    valread = read( sock , buffer, 1023); 
+    printf("%s\n",buffer ); 
+    
     //send
-    gets(message);
+    fgets(&message, 1023, stdin);
     send(sock , message , strlen(message) , 0 ); 
     printf("message sent\n"); 
     
-    //recieve
-    valread = read( sock , buffer, 1024); 
-    printf("%s\n",buffer ); 
+    
+
+    return 0;
 }
