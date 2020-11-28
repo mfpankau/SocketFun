@@ -14,6 +14,7 @@ int main()
     //get ip of server
     printf("Input ip of server: ");
     gets(ip);
+    ip[16] = '\0';
 
     //initializing
     /*
@@ -26,14 +27,14 @@ int main()
         printf("startup failed.");
         return -1;
     }
-
+    puts("startup succeeded...\n");
     //create socket
     if((sock = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
         printf("socket creation failed");
         return -1;
     }
-
+    puts("socket created...\n");
     //setup address
     server.sin_family = AF_INET;
     server.sin_port = htons(80);
@@ -58,7 +59,7 @@ int main()
         printf("sending message failed");
         return -1;
     }
-
+    puts("message sent\n");
     //print recieved message
     if(recv_size = (recv(sock, server_reply, 2000, 0)) == SOCKET_ERROR)
     {
