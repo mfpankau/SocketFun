@@ -7,4 +7,4 @@ TEMPLATE files are downloaded, non-TEMPLATE are pretty much same thing but i wro
 
 Want to add windows support but WINSOCK kinda ehhh rn 
 
-so i added some windows, prob sont work but maybe?
+so i added some windows, prob wont work but maybe?

@@ -4,16 +4,20 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <string.h>
-#define PORT 8080
 
 int main()
 {
-    int server_fd, new_socket, valread;
+    int server_fd, new_socket, valread, port;
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
     char buffer[1024] = {0};
     char* text = "sup bro";
+
+    //get port input
+    printf("Input port for server to be hosted on: ");
+    scanf("%d", &port);
+
 
     //create socket descriptor
     if((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
@@ -30,7 +34,7 @@ int main()
     //set address for socket
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(PORT);
+    address.sin_port = htons(port);
     //bind socket to port 8080
     if(bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0)
     {
@@ -48,10 +52,15 @@ int main()
         perror("accept"); 
         exit(EXIT_FAILURE); 
     } 
-    //printf("socket should be up now pog\n");
+    printf("socket should be up now pog\n");
+    
+    //output read data
     valread = read( new_socket , buffer, 1024); 
     printf("%s\n",buffer ); 
+    
+    //send message
+    gets(text);
     send(new_socket , text , strlen(text) , 0 ); 
-    printf("Hello message sent\n"); 
+    printf("message sent\n"); 
     return 0;
 }
