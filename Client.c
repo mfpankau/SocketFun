@@ -50,7 +50,6 @@ int main()
     
     //send
     send(sock , &message , strlen(message) , 0 ); 
-    printf("message sent\n"); 
     
     //recieve
     valread = read( sock , buffer, 1023); 

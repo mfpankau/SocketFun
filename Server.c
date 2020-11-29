@@ -60,8 +60,6 @@ int main()
 
     //send message
     send(new_socket , text , strlen(text) , 0 ); 
-    printf("message sent\n"); 
     
-
     return 0;
 }

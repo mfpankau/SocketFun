@@ -20,6 +20,10 @@ int main()
     printf("Input server port: ");
     scanf("%d", &port);
 
+    //get message to send
+    puts("Input message: ");
+    gets(message);
+
     //initializing
     /*
         WSAStartup() is a function to load library(like i said, windows is wierd)
@@ -52,11 +56,6 @@ int main()
     }
 
     printf("connected\n");
-        
-    
-    //get message to send
-    puts("Input message: ");
-    gets(message);
 
     //send message
     if(send(sock, message, sizeof(message), 0) < 0)
