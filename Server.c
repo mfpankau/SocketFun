@@ -52,17 +52,16 @@ int main()
     { 
         perror("accept"); 
         exit(EXIT_FAILURE); 
-    } 
+    }
     
     //output read data
     valread = read( new_socket , buffer, 1023); 
     printf("%s\n",buffer ); 
-    
+
     //send message
-    fgets(&text, 1023, stdin);
     send(new_socket , text , strlen(text) , 0 ); 
     printf("message sent\n"); 
-
+    
 
     return 0;
 }

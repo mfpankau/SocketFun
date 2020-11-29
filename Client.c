@@ -21,6 +21,10 @@ int main()
     printf("Input port of server: ");
     scanf("%d", &port);
 
+    //message to send
+    printf("Input message to send to server: ");
+    scanf("%s", &message);
+
     //create socket descriptor
     if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
@@ -44,16 +48,13 @@ int main()
     }
     printf("connected to server\n");
     
+    //send
+    send(sock , &message , strlen(message) , 0 ); 
+    printf("message sent\n"); 
+    
     //recieve
     valread = read( sock , buffer, 1023); 
     printf("%s\n",buffer ); 
-    
-    //send
-    fgets(&message, 1023, stdin);
-    send(sock , message , strlen(message) , 0 ); 
-    printf("message sent\n"); 
-    
-    
 
     return 0;
 }
